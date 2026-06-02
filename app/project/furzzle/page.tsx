@@ -114,7 +114,7 @@ export default function FurzzlePage() {
               )}
               <div className={`relative w-full rounded-2xl overflow-hidden shadow-2xl border border-gray-100 transition-opacity duration-500 ${isImageLoading ? 'opacity-0' : 'opacity-100'}`}>
                 <Image
-                  src="/component/landing-page/furzzle/furzzle-all.png"
+                  src="/component/landing-page/furzzle/Furzzle-all.png"
                   alt="Furzzle Work Review Detail"
                   width={3200}
                   height={18992}
