@@ -36,14 +36,13 @@ export default function FurzzlePage() {
         />
         <div className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-6">
           <div className="w-[80px] h-[80px] bg-white rounded-2xl p-1 shadow-xl flex items-center justify-center">
-            <Image 
-              src="/component/naming/logo/big/furzzle.svg" 
-              alt="Furzzle Logo"
-              width={72}
-              height={72}
-              className="object-contain" 
-            />
-          </div>
+  {/* 💡 Next.js 전용 Image 대신, 원래 쓰시던 깨끗한 HTML img 태그로 원상복구 했습니다! */}
+  <img 
+    className='w-full h-full object-contain' 
+    src="/component/naming/logo/big/furzzle.svg" 
+    alt="Furzzle Logo" 
+  />
+</div>
           <h1 className="text-center text-white text-5xl md:text-7xl font-semibold leading-[1.2] drop-shadow-lg">
             FURZZLE
           </h1>
