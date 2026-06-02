@@ -14,7 +14,7 @@ export default function FurzzlePage() { // 💡 컴포넌트 이름도 HshgPage�
   const [activeTab, setActiveTab] = useState(0);
   
   // 💡 영상/PDF 탭 상태(reviewSubTab)를 지우고, smbap처럼 이미지 로딩 상태를 추가했습니다.
-  const [isImageLoading, setIsImageLoading] = useState(false);
+  const [isImageLoading, setIsImageLoading] = useState(true);
 
   // 데이터 통합 박스에서 furzzle 정보를 가져옵니다.
   const furzzleData = ALL_PROJECTS.furzzle;
@@ -24,7 +24,6 @@ export default function FurzzlePage() { // 💡 컴포넌트 이름도 HshgPage�
     if (index === activeTab) return;
     setActiveTab(index);
     if (index === 1) setIsImageLoading(true);
-    else setIsImageLoading(false);
   };
 
   return (
@@ -34,7 +33,7 @@ export default function FurzzlePage() { // 💡 컴포넌트 이름도 HshgPage�
       {/* Hero Section */}
       <section className="relative overflow-hidden min-h-[464px] bg-white">
         <Image
-          src="/component/landing-page/project/Furzzle-1920.png"
+          src="/component/landing-page/project/furzzle-1920.png"
           alt="Hero" fill priority className="object-cover brightness-80"
         />
        <div className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-6">
@@ -111,7 +110,7 @@ export default function FurzzlePage() { // 💡 컴포넌트 이름도 HshgPage�
               {/* 실제 포트폴리오 이미지 */}
               <div className={`relative w-full rounded-2xl overflow-hidden shadow-2xl border border-gray-100 transition-opacity duration-500 ${isImageLoading ? 'opacity-0' : 'opacity-100'}`}>
                 <Image
-                  src="/component/landing-page/furzzle/Furzzle-all.png" /* 🚨 디자이너님: 여기에 실제 Furzzle 상세 이미지 경로를 꼭 넣어주세요! */
+                  src="/component/landing-page/furzzle/furzzle-all.png" /* 🚨 디자이너님: 여기에 실제 Furzzle 상세 이미지 경로를 꼭 넣어주세요! */
                   alt="Furzzle Work Review Detail"
                   width={3200} height={18992} quality={100} priority
                   onLoadingComplete={() => setIsImageLoading(false)}
