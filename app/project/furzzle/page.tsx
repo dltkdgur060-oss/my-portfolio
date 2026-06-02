@@ -8,18 +8,13 @@ import NextPrev from "../../components/NextPrev";
 import { ALL_PROJECTS } from "../../constants/projectData";
 import DownloadDropdown from "../../components/DownloadDropdown";
 import TopFloatingButton from "../../components/TopFloatingButton";
-// 💡 더 이상 사용하지 않는 VideoItem 컴포넌트는 import에서 제거했습니다.
 
-export default function FurzzlePage() { // 💡 컴포넌트 이름도 HshgPage에서 FurzzlePage로 수정했습니다.
+export default function FurzzlePage() {
   const [activeTab, setActiveTab] = useState(0);
-  
-  // 💡 영상/PDF 탭 상태(reviewSubTab)를 지우고, smbap처럼 이미지 로딩 상태를 추가했습니다.
   const [isImageLoading, setIsImageLoading] = useState(true);
 
-  // 데이터 통합 박스에서 furzzle 정보를 가져옵니다.
   const furzzleData = ALL_PROJECTS.furzzle;
 
-  // 💡 smbap에서 가져온 탭 변경 핸들러 함수입니다 (로딩 애니메이션용)
   const handleTabChange = (index: number) => {
     if (index === activeTab) return;
     setActiveTab(index);
@@ -27,21 +22,26 @@ export default function FurzzlePage() { // 💡 컴포넌트 이름도 HshgPage�
   };
 
   return (
-    <div className="bg-white">
+    <div className="bg-white text-black">
       <Navbar />
 
       {/* Hero Section */}
       <section className="relative overflow-hidden min-h-[464px] bg-white">
         <Image
           src="/component/landing-page/project/furzzle-1920.png"
-          alt="Hero" fill priority className="object-cover brightness-80"
+          alt="Hero"
+          fill
+          priority
+          className="object-cover brightness-80"
         />
-       <div className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-6">
+        <div className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-6">
           <div className="w-[80px] h-[80px] bg-white rounded-2xl p-1 shadow-xl flex items-center justify-center">
-            <img 
-              className='w-full h-full object-contain' 
-              src="/component/naming/logo/big/Furzzle.svg" 
-              alt="Furzzle Logo" 
+            <Image 
+              src="/component/naming/logo/big/furzzle.svg" 
+              alt="Furzzle Logo"
+              width={72}
+              height={72}
+              className="object-contain" 
             />
           </div>
           <h1 className="text-center text-white text-5xl md:text-7xl font-semibold leading-[1.2] drop-shadow-lg">
@@ -50,7 +50,7 @@ export default function FurzzlePage() { // 💡 컴포넌트 이름도 HshgPage�
         </div>
       </section>
 
-      {/* Local Navigation 다른 목록버튼 */}
+      {/* Local Navigation */}
       <nav className="py-6 bg-[#F1F1F1] border-b border-gray-200">
         <div className="flex flex-wrap gap-3 max-w-7xl mx-auto px-6">
           <Link href="/project/furzzle">
@@ -71,8 +71,13 @@ export default function FurzzlePage() { // 💡 컴포넌트 이름도 HshgPage�
         <div className="flex mb-10 border-b border-gray-200">
           {["개요", "작품 리뷰"].map((label, index) => (
             <button
-              key={label} onClick={() => handleTabChange(index)}
-              className={`flex-1 py-4 text-base font-medium border-b-2 transition-all duration-300 ${activeTab === index ? "border-[#1DB6B9] text-[#1DB6B9]" : "border-transparent text-gray-500 hover:text-gray-700"}`}
+              key={label}
+              onClick={() => handleTabChange(index)}
+              className={`flex-1 py-4 text-base font-medium border-b-2 transition-all duration-300 ${
+                activeTab === index 
+                  ? "border-[#1DB6B9] text-[#1DB6B9]" 
+                  : "border-transparent text-gray-500 hover:text-gray-700"
+              }`}
             >
               {label}
             </button>
@@ -81,7 +86,9 @@ export default function FurzzlePage() { // 💡 컴포넌트 이름도 HshgPage�
 
         {/* Title & Download Dropdown */}
         <div className="flex justify-between items-center w-full mb-6">
-          <h3 className="text-2xl font-bold text-gray-900">{activeTab === 0 ? "개요" : "작품 리뷰"}</h3>
+          <h3 className="text-2xl font-bold text-gray-900">
+            {activeTab === 0 ? "개요" : "작품 리뷰"}
+          </h3>
           <DownloadDropdown files={furzzleData.files} />
         </div>
 
@@ -99,20 +106,21 @@ export default function FurzzlePage() { // 💡 컴포넌트 이름도 HshgPage�
               </div>
             </article>
           ) : (
-            /* --- Work Review Tab (smbap 방식 적용) --- */
+            /* --- Work Review Tab --- */
             <div className="relative flex flex-col items-center pb-16">
-              {/* 스켈레톤 로딩 UI (이미지 뜨기 전 회색 박스) */}
               {isImageLoading && (
                 <div className="absolute inset-0 z-10 max-w-7xl mx-auto py-2 animate-pulse">
                   <div className="w-full bg-gray-100 rounded-2xl" style={{ height: '800px' }} />
                 </div>
               )}
-              {/* 실제 포트폴리오 이미지 */}
               <div className={`relative w-full rounded-2xl overflow-hidden shadow-2xl border border-gray-100 transition-opacity duration-500 ${isImageLoading ? 'opacity-0' : 'opacity-100'}`}>
                 <Image
-                  src="/component/landing-page/furzzle/furzzle-all.png" /* 🚨 디자이너님: 여기에 실제 Furzzle 상세 이미지 경로를 꼭 넣어주세요! */
+                  src="/component/landing-page/furzzle/furzzle-all.png"
                   alt="Furzzle Work Review Detail"
-                  width={3200} height={18992} quality={100} priority
+                  width={3200}
+                  height={18992}
+                  quality={100}
+                  priority
                   onLoadingComplete={() => setIsImageLoading(false)}
                 />
               </div>
@@ -123,8 +131,12 @@ export default function FurzzlePage() { // 💡 컴포넌트 이름도 HshgPage�
       </main>
       
       <NextPrev
-        prevHref="#" prevTitle="이전 글이 없습니다." prevDisabled={true}
-        nextHref="/project/properties" nextTitle="우리 동네 부동산" nextDisabled={false}
+        prevHref="#"
+        prevTitle="이전 글이 없습니다."
+        prevDisabled={true}
+        nextHref="/project/properties"
+        nextTitle="우리 동네 부동산"
+        nextDisabled={false}
       />
     </div>
   );
